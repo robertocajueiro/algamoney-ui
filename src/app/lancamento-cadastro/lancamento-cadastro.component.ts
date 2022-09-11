@@ -10,7 +10,18 @@ export class LancamentoCadastroComponent implements OnInit {
   tipos = [
     { label: 'Receita', value: 'RECEITA' },
     { label: 'Despesa', value: 'DESPESA' },
-  ]
+  ];
+
+  categorias = [
+    { label: 'Alimentos', value: 1},
+    { label: 'Transporte', value: 2},
+  ];
+
+  pessoas = [
+    { label: 'Roberto Dantas', value: 1 },
+    { label: 'Danielli Batista', value: 2 },
+    { label: 'Lucas Cajueiro ', value: 3 },
+  ];
 
   constructor() { }
 
