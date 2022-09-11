@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  margin: 0px;
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #404C51;
 }
@@ -46,6 +46,10 @@ label {
   margin-right: 5px;
 }
 
+.p-button {
+margin-right: 0.25em !important;
+}
+
 @media (min-width: 40em) {
   .col-valor-header {
     width: 120px;
@@ -72,7 +76,18 @@ label {
     text-align: center !important;
   }
 
-  .col-acoes .p-button {
-    margin: 1px;
-  }
+}
+
+a {
+color: #337ab7;
+text-decoration: none;
+}
+
+a:hover, a:focus {
+text-decoration: underline;
+}
+
+a.p-button:hover,
+a.p-button:focus {
+text-decoration: none;
 }
