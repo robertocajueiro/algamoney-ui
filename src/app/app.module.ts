@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
@@ -14,35 +13,33 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 
 import { AppComponent } from './app.component';
-import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
-import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { FormsModule } from '@angular/forms';
 import { MessageComponent } from './message/message.component';
-import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
+import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LancamentosPesquisaComponent,
     NavbarComponent,
     PessoasPesquisaComponent,
-    LancamentoCadastroComponent,
     PessoaCadastroComponent,
-    MessageComponent,
-    LancamentosGridComponent,
-    PessoasGridComponent
+    PessoasGridComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+
+    LancamentosModule,
 
     InputTextModule,
     InputTextareaModule,

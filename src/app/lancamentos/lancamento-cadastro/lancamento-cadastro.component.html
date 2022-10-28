@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form autocomplete="off" #lancamentoForm="ngForm" (ngSubmit)="salvar(lancamentoForm)">
 
     <div class="grid">
       <div class="col-12">
@@ -12,20 +12,28 @@
 
       <div class="col-6 md:col-3 p-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="false" [showIcon]="false"></p-calendar>
-      </div>
+        <p-calendar dateFormat="dd/mm/yy" name="vencimento" ngModel #vencimento="ngModel" [required]="true"
+        [inline]="false" [readonlyInput]="false" [showIcon]="false"></p-calendar>
+<!-- <app-message [control]="vencimento.control" error="required" text="Informe uma data de vencimento"></app-message> -->
+     </div>
+
       <div class="col-6 md:col-3 p-fluid">
         <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
-        <p-calendar dateFormat="dd/mm/yy"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" name="recebimento" ngModel #tipo="ngModel"></p-calendar>
       </div>
+
       <div class="col-12 md:col-9 p-fluid">
         <label>Descrição</label>
         <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" required minlength="5">
 
-        <app-message [control]="descricao" error="required" text="Informe uma descrição"></app-message>
-        <app-message [control]="descricao" error="minlength"
-          text="Mínimo de {{ descricao.errors?.['minlength'].requiredLength }} caracteres. Você digitou apenas {{ descricao.errors?.['minlength'].actualLength }}">
+    <!--     <app-message
+          [control]="descricao.control" error="required" text="Informe uma descrição">
         </app-message>
+
+        <app-message [control]="descricao.control" error="minlength"
+          text="Mínimo de {{ descricao.errors?.['minlength']?.requiredLength }} caracteres. Você digitou apenas {{ descricao.errors?.['minlength']?.actualLength }}">
+        </app-message> -->
+
       </div>
 
       <div class="col-12 md:col-3 p-fluid">
@@ -33,19 +41,19 @@
         <p-inputNumber mode="currency" currency="BRL" placeholder="0,00"></p-inputNumber>
       </div>
       <div class="col-12 md:col-6 p-fluid">
-        <label>Categoria {{ categoria.value }}</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione" #categoria></p-dropdown>
+        <label>Categoria</label>
+        <p-dropdown [options]="categorias" placeholder="Selecione" #categoria ></p-dropdown>
       </div>
       <div class="col-12 md:col-6 p-fluid">
-        <label>Pessoa {{ pessoa.value }}</label>
+        <label>Pessoa</label>
         <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true" #pessoa></p-dropdown>
       </div>
       <div class="col-12 p-fluid">
         <label>Observação</label>
         <textarea pInputTextarea rows="3"></textarea>
       </div>
-      <div class="col-12">
-        <button pButton type="submit" label="Salvar"></button>
+      <div class="col-12" >
+        <button pButton type="submit" label="Salvar" [disabled]="lancamentoForm.invalid"></button>
         <button pButton type="button" label="Novo" class="p-button-info"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
