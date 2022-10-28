@@ -11,6 +11,7 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputMaskModule } from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -28,6 +29,8 @@ import { FormsModule } from '@angular/forms';
     TableModule,
     TooltipModule,
     InputMaskModule,
+
+    SharedModule
 
   ],
   exports: [

@@ -17,6 +17,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 
+import { SharedModule } from '../shared/shared.module';
+
 
 
 
@@ -34,7 +36,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
-    InputNumberModule
+    InputNumberModule,
+
+    SharedModule
   ],
   declarations: [
     LancamentoCadastroComponent,
