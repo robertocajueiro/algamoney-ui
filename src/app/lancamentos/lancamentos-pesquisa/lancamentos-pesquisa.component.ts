@@ -14,7 +14,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   filtro = new LancamentoFiltro();
   lancamentos: any[] = [];
 
-  constructor(private LancamentoService: LancamentoService){}
+  constructor(private lancamentoService: LancamentoService){}
 
   ngOnInit(): void{
     //this.pesquisar();
@@ -23,7 +23,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   pesquisar(pagina = 0): void{
     this.filtro.pagina = pagina;
 
-    this.LancamentoService.pesquisar(this.filtro)
+    this.lancamentoService.pesquisar(this.filtro)
       .then(resultado => {
         this.totalRegistros = resultado.total;
         this.lancamentos = resultado.lancamentos;
