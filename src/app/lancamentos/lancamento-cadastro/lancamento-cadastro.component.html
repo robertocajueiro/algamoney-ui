@@ -1,5 +1,5 @@
 <div class="container">
-  <form autocomplete="off" #lancamentoForm="ngForm" (ngSubmit)="salvar(lancamentoForm)">
+  <form autocomplete="off" #lancamentoForm="ngForm">
 
     <div class="grid">
       <div class="col-12">
@@ -42,7 +42,7 @@
       </div>
       <div class="col-12 md:col-6 p-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione" #categoria ></p-dropdown>
+        <p-dropdown [options]="categorias" placeholder="Selecione" #categoria [required]="true"></p-dropdown>
       </div>
       <div class="col-12 md:col-6 p-fluid">
         <label>Pessoa</label>
