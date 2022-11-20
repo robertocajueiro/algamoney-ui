@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 
     CommonModule,
     FormsModule,
+    HttpClientModule,
 
     InputTextModule,
     InputTextareaModule,

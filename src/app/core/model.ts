@@ -1,19 +1,19 @@
 export class Pessoa {
-  codigo!: number;
+  codigo?: number;
 }
 
 export class Categoria {
-  codigo!: number;
+  codigo?: number;
 }
 
 export class Lancamento {
-  codigo!: number;
+  codigo?: number;
   tipo: string = 'RECEITA';
-  descricao!: string;
-  dataVencimento!: Date
-  dataPagamento!: Date;
-  valor!: number;
-  observacao!: string;
+  descricao?: string;
+  dataVencimento?: Date;
+  dataPagamento?: Date;
+  valor?: number;
+  observacao?: string;
   pessoa = new Pessoa();
   categoria = new Categoria();
 
