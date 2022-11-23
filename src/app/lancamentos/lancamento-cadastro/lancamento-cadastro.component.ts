@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriasService } from '../../categorias/categoria.service';
 import { Lancamento } from './../../core/model';
 import { NgForm, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -32,6 +32,7 @@ export class LancamentoCadastroComponent implements OnInit {
     private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -67,11 +68,12 @@ export class LancamentoCadastroComponent implements OnInit {
 
   adicionarLancamento(form: NgForm ){
     this.lancamentoService.adicionar(this.lancamento)
-      .then(() => {
+      .then((lancamentoAdicionado) => {
         this.messageService.add({ severity: 'success', detail: 'Lançamento adicionado com sucesso!' });
 
-        form.reset();
-        this.lancamento = new Lancamento();
+        //form.reset();
+        //this.lancamento = new Lancamento();
+        this.router.navigate(['/lancamentos', lancamentoAdicionado?.codigo]);
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
@@ -93,12 +95,22 @@ carregarCategorias(){
     .catch(erro => this.errorHandler.handle(erro));
 }
 
-carregarPessoas(){
-  return this.pessoaService.listarTodas()
-    .then(pessoas => {
-      this.pessoas = pessoas.map((p: any)  => ({label: p.nome, value: p.codigo }));
-      })
-    .catch(erro => this.errorHandler.handle(erro));
-}
+  carregarPessoas(){
+    return this.pessoaService.listarTodas()
+      .then(pessoas => {
+        this.pessoas = pessoas.map((p: any)  => ({label: p.nome, value: p.codigo }));
+        })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  novo(form: NgForm){
+    form.reset();
+
+    setTimeout(() => {
+      this.lancamento = new Lancamento();
+    }, 1);
+
+    this.router.navigate(['lancamentos/novo']);
+  }
 
 }
