@@ -77,13 +77,18 @@ export class LancamentoService {
       .toPromise();
   }
 
-  atualizar(lancamento: Lancamento): Promise<Lancamento | undefined>{
+  atualizar(lancamento: Lancamento): Promise<Lancamento>{
     const headers = new HttpHeaders()
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
       .append('Content-Type',   'application/json');
 
     return this.http.put<Lancamento>(`${this.lancamentosUrl}/${lancamento.codigo}`, lancamento, { headers })
-      .toPromise();
+      .toPromise()
+      .then((response: any) => {
+        this.converterStringsParaDatas([response]);
+
+        return response;
+      })
   }
 
   buscarPorCodigo(codigo: number): Promise<Lancamento>{

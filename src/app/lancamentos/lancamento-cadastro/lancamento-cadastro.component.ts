@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CategoriasService } from '../../categorias/categoria.service';
 import { Lancamento } from './../../core/model';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -35,14 +35,14 @@ export class LancamentoCadastroComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.carregarCategorias();
-    this.carregarPessoas();
-
     const codigoLancamento = this.route.snapshot.params['codigo'];
 
-    if (codigoLancamento){
+    if (codigoLancamento && codigoLancamento !== 'novo'){
       this.carregarLancamento(codigoLancamento);
     }
+
+    this.carregarCategorias();
+    this.carregarPessoas();
   }
 
   get editando(){
@@ -58,6 +58,14 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: NgForm ){
+    if(this.editando) {
+      this.atualizarLancamento(form);
+    } else {
+      this.adicionarLancamento(form);
+    }
+  }
+
+  adicionarLancamento(form: NgForm ){
     this.lancamentoService.adicionar(this.lancamento)
       .then(() => {
         this.messageService.add({ severity: 'success', detail: 'Lançamento adicionado com sucesso!' });
@@ -66,7 +74,15 @@ export class LancamentoCadastroComponent implements OnInit {
         this.lancamento = new Lancamento();
       })
       .catch(erro => this.errorHandler.handle(erro));
-      console.log(this.lancamento)
+  }
+
+  atualizarLancamento(form: NgForm) {
+    this.lancamentoService.atualizar(this.lancamento)
+      .then((lancamento: Lancamento) => {
+        this.lancamento = lancamento;
+        this.messageService.add({ severity: 'success', detail: 'Lançamento alterado com sucesso!' });
+      }
+      ).catch(erro => this.errorHandler.handle(erro))
   }
 
 carregarCategorias(){
