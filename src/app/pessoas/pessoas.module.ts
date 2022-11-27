@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { PessoasRoutingModule } from './pessoas-routing.components';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
 
     InputTextModule,
     ButtonModule,
@@ -28,7 +31,8 @@ import { SharedModule } from '../shared/shared.module';
     TooltipModule,
     InputMaskModule,
 
-    SharedModule
+    SharedModule,
+    PessoasRoutingModule
   ],
   exports: []
 })
