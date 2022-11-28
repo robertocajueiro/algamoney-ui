@@ -1,3 +1,4 @@
+import { SegurancaModule } from './seguranca/seguranca.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -12,6 +13,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 
 import { TranslateService  } from '@ngx-translate/core';
 import { AppRoutingModule } from './app-routing.modules';
+import { LoginFormComponent } from './seguranca/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -25,15 +27,13 @@ import { AppRoutingModule } from './app-routing.modules';
     LancamentosModule,
     PessoasModule,
     CoreModule,
+    SegurancaModule,
+
     AppRoutingModule
 
 
   ],
-  providers: [
-    MessageService,
-    ConfirmationService,
-    TranslateService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
