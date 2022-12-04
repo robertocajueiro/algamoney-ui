@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://algamoneyui-robertocajueiro.netlify.app',
+  tokenAllowedDomains: [ /algamoneyapi-robertocajueiro.herokuapp.com/ ],
+  tokenDisallowedRoutes: [/\/oauth\/token/],
 };
