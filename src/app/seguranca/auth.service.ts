@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
+  tokensRevokeUrl = 'http://localhost:8080/tokens/revoke';
   oauthTokenUrl = 'http://localhost:8080/oauth/token';
   jwtPayload: any;
 
@@ -62,6 +63,11 @@ export class AuthService {
     })
   }
 
+  limparAccessToken(){
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
   isAccessTokenInvalido(){
     const token = localStorage.getItem('token');
 
@@ -95,5 +101,13 @@ export class AuthService {
     if(token){
       this.armazenarToken(token);
     }
+  }
+
+  logout() {
+    return this.http.delete(this.tokensRevokeUrl, { withCredentials: true })
+      .toPromise()
+      .then(() => {
+        this.limparAccessToken();
+      });
   }
 }
