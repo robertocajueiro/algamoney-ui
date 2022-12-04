@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 
@@ -22,6 +23,7 @@ export class PessoasPesquisaComponent implements OnInit {
   constructor(
     private pessoaService: PessoaService,
     private errorHandler: ErrorHandlerService,
+    private auth: AuthService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private title: Title

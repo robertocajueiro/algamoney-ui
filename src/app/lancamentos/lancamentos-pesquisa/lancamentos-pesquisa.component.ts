@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
@@ -20,6 +21,7 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   constructor(
     private lancamentoService: LancamentoService,
+    private auth: AuthService,
     private errorHandler: ErrorHandlerService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -69,6 +71,10 @@ export class LancamentosPesquisaComponent implements OnInit {
           this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso!'})
         })
         .catch(error => this.errorHandler.handle(error));
+    }
+
+    naoTemPermissao(permissao: string) {
+      return !this.auth.temPermissao(permissao);
     }
 
   }
