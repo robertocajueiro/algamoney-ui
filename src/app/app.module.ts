@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +24,7 @@ import { LoginFormComponent } from './seguranca/login-form/login-form.component'
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
     LancamentosModule,
     PessoasModule,
