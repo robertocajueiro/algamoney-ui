@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'algamoneyapi-robertocajueiro.herokuapp.com',
+  apiUrl: 'https://algamoneyapi-robertocajueiro.herokuapp.com',
   tokenAllowedDomains: [ /algamoneyapi-robertocajueiro.herokuapp.com/ ],
   tokenDisallowedRoutes: [/\/oauth\/token/],
 
