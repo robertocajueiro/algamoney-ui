@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8080',
-  //apiUrl: 'https://algamoneyui-robertocajueiro.netlify.app',
-  //  tokenAllowedDomains: [ /algamoneyapi-robertocajueiro.herokuapp.com/ ],
-
-  tokenAllowedDomains: [/localhost:8080/],
+  apiUrl: 'algamoneyapi-robertocajueiro.herokuapp.com',
+  tokenAllowedDomains: [ /algamoneyapi-robertocajueiro.herokuapp.com/ ],
   tokenDisallowedRoutes: [/\/oauth\/token/],
+
+  //apiUrl: 'http://localhost:8080',
+  //tokenAllowedDomains: [/localhost:8080/],
 };
