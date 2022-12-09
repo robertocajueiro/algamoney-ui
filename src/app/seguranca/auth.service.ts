@@ -27,8 +27,7 @@ export class AuthService {
 
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
-    return this.http.post(this.oauthTokenUrl, body,
-      { headers, withCredentials: true })
+    return this.http.post(this.oauthTokenUrl, body, { headers, withCredentials: true })
       .toPromise()
       .then((response: any) => {
         this.armazenarToken(response[`access_token`]);
