@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -60,7 +60,7 @@ export class LancamentoCadastroComponent implements OnInit {
       tipo: ['RECEITA', Validators.required ],
       dataVencimento: [null, Validators.required ],
       dataPagamento: [],
-      descricao: [null, [Validators.required, Validators.minLength(5)]],
+      descricao: [null, [ this.validarObrigatoriedade, this.validarTamanhoMinimo(5)]],
       valor: [null, Validators.required ],
       pessoa: this.formBuilder.group({
         codigo: [null, Validators.required ],
@@ -72,6 +72,16 @@ export class LancamentoCadastroComponent implements OnInit {
       }),
       observacao: []
     })
+  }
+
+  validarObrigatoriedade(input: FormGroup) {
+    return (input.value ? null : { obrigatoriedade: true })
+  }
+
+  validarTamanhoMinimo(valor: number){
+    return (input: FormControl) => {
+      return (!input.value || input.value.length >= valor) ? null : { tamanhoMinimo: { tamanho: valor }};
+    }
   }
 
   get editando(){
