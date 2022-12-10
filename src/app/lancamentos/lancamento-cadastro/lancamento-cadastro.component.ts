@@ -1,14 +1,14 @@
-import { MessageService } from 'primeng/api';
-import { LancamentoService } from './../lancamento.service';
-import { PessoaService } from './../../pessoas/pessoa.service';
-import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 import { CategoriasService } from '../../categorias/categoria.service';
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Lancamento } from './../../core/model';
-import { NgForm, FormControl } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { PessoaService } from './../../pessoas/pessoa.service';
+import { LancamentoService } from './../lancamento.service';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -20,6 +20,8 @@ export class LancamentoCadastroComponent implements OnInit {
   categorias: any[] = [];
   pessoas:any[] = [];
   lancamento: Lancamento = new Lancamento();
+
+  formulario!: FormGroup;
 
   tipos = [
     { label: 'Receita', value: 'RECEITA' },
@@ -35,9 +37,11 @@ export class LancamentoCadastroComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private title: Title,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.configurarFormulario();
     this.title.setTitle('Novo lançamento');
 
     const codigoLancamento = this.route.snapshot.params['codigo'];
@@ -48,6 +52,26 @@ export class LancamentoCadastroComponent implements OnInit {
 
     this.carregarCategorias();
     this.carregarPessoas();
+  }
+
+  configurarFormulario(){
+    this.formulario = this.formBuilder.group({
+      codigo: [],
+      tipo: ['RECEITA', Validators.required ],
+      dataVencimento: [null, Validators.required ],
+      dataPagamento: [],
+      descricao: [null, [Validators.required, Validators.minLength(5)]],
+      valor: [null, Validators.required ],
+      pessoa: this.formBuilder.group({
+        codigo: [null, Validators.required ],
+        nome: []
+      }),
+      categoria: this.formBuilder.group({
+        codigo: [ null, Validators.required ],
+        nome: []
+      }),
+      observacao: []
+    })
   }
 
   get editando(){
