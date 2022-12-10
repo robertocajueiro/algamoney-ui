@@ -1,25 +1,25 @@
-import { AuthGuard } from './../seguranca/auth.guard';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 
-import { PessoaCadastroComponent } from "./pessoa-cadastro/pessoa-cadastro.component";
-import { PessoasPesquisaComponent } from "./pessoas-pesquisa/pessoas-pesquisa.component";
+import { AuthGuard } from './../seguranca/auth.guard';
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 
 const routes: Routes = [
   {
-    path: 'pessoas',
+    path: '',
     component: PessoasPesquisaComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_PESQUISAR_PESSOA'] }
   },
   {
-    path: 'pessoas/nova',
+    path: 'nova',
     component: PessoaCadastroComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_PESQUISAR_PESSOA'] }
   },
   {
-    path: 'pessoas/:codigo',
+    path: ':codigo',
     component: PessoaCadastroComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_PESQUISAR_PESSOA'] }

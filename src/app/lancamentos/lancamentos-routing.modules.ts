@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './../seguranca/auth.guard';
@@ -7,19 +7,19 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 
 const routes: Routes = [
   {
-    path: 'lancamentos',
+    path: '',
     component: LancamentosPesquisaComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_PESQUISAR_LANCAMENTO'] }
 },
   {
-    path: 'lancamentos/novo',
+    path: 'novo',
     component: LancamentoCadastroComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_CADASTRAR_LANCAMENTO'] }
   },
   {
-    path: 'lancamentos/:codigo',
+    path: ':codigo',
     component: LancamentoCadastroComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_CADASTRAR_LANCAMENTO'] }
